@@ -3,6 +3,8 @@ import { GoogleMap, LoadScript, Marker, useLoadScript } from "@react-google-maps
 import { fetchNearbyPlaces } from '../src/app/utils/api/index';
 import { process } from 'process';
 import {car,bike} from '../assets/index'
+import Image from 'next/image';
+import { inherits } from 'util';
 
 const AdminMap = () => {
 
@@ -13,7 +15,8 @@ const AdminMap = () => {
   const iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
     const icons = {
-      car: car, 
+      // car: <div style={{width:"50px",height:"50px"}}><Image style={{height:'50px',width:'50px'}} src={car}/></div>, 
+      car: car,
       bike: bike, 
     };
 
@@ -90,7 +93,6 @@ const AdminMap = () => {
     ...place,
     icon: icons[place.type]
   }));
-  console.log(locations)
   const center = {lat: 24.90737193213271, lng: 66.9669267883356 };
 
   return (
@@ -102,10 +104,7 @@ const AdminMap = () => {
         mapContainerStyle={{ width: '400px', height: '400px' }}
       >
         {locations.map((item, index) => (
-          <Marker key={index} position={item.location}    icon={{
-            url: item.icon,
-            // scaledSize: new window.google.maps.Size(40, 40), // Adjust the size as needed
-          }}/>
+          <Marker key={index} position={item.location} icon={item.icon.src}  />
         ))}
       </GoogleMap>
       </LoadScript>
