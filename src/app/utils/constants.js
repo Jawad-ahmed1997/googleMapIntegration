@@ -1,1 +1,2 @@
-export const HOST = "https://maps.googleapis.com/maps/api/place"
+export const HOST = "https://maps.googleapis.com/maps/api"
+
